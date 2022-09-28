@@ -6,7 +6,7 @@ createAutoComplete({
         `;
   },
   onOptionSelect(meal) {
-    onMealSelect(meal);
+    onMealSelect(meal.idMeal);
   },
   inputValue(meal, e) {
     return `${meal.strMeal} (${e.target.value})`;
@@ -27,12 +27,12 @@ createAutoComplete({
   },
 });
 
-const onMealSelect = async (meal) => {
+const onMealSelect = async (id) => {
   const response = await axios.get(
     "https://www.themealdb.com/api/json/v1/1/lookup.php",
     {
       params: {
-        i: meal.idMeal,
+        i: id,
       },
     }
   );
